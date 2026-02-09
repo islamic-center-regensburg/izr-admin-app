@@ -4,9 +4,9 @@ import {
 	Calendar,
 	ChevronDown,
 	Clock,
+	House,
 	ListTodo,
 	Plus,
-	TestTube2,
 	Upload,
 } from "lucide-react";
 import { Collapsible } from "radix-ui";
@@ -61,6 +61,14 @@ export function AppSidebar() {
 								<Collapsible.Content>
 									<SidebarMenuSub>
 										<SidebarMenuSubItem>
+											<SidebarMenuSubItem>
+												<SidebarMenuSubButton asChild>
+													<Link to="/prayer-times/prayer-iqama">
+														<Clock />
+														<span>Iqama Times</span>
+													</Link>
+												</SidebarMenuSubButton>
+											</SidebarMenuSubItem>
 											<SidebarMenuSubButton asChild>
 												<Link to="/prayer-times/upload-prayer-times">
 													<Upload />
@@ -71,7 +79,7 @@ export function AppSidebar() {
 										<SidebarMenuSubItem>
 											<SidebarMenuSubButton asChild>
 												<Link to="/prayer-times/test-prayer-times">
-													<TestTube2 />
+													<Calendar />
 													<span>Prayer Times</span>
 												</Link>
 											</SidebarMenuSubButton>
@@ -79,7 +87,7 @@ export function AppSidebar() {
 										<SidebarMenuSubItem>
 											<SidebarMenuSubButton asChild>
 												<Link to="/prayer-times/mosque-prayer-times">
-													<TestTube2 />
+													<House />
 													<span>Mosque Prayer Times</span>
 												</Link>
 											</SidebarMenuSubButton>
