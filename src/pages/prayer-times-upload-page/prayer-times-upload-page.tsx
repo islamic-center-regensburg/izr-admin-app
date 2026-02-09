@@ -4,11 +4,11 @@ import { toast } from "sonner";
 import type { FileTypeEnum } from "@/api/gen";
 import { uploadPrayerTimesMuationOptions } from "@/api/prayer_times_upload/mutations";
 import { PrayerTimesUploadSchema } from "@/api/prayer_times_upload/validation";
-import { FileDropzone } from "@/components/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useMosque } from "@/contexts";
+import { FileDropzone } from "@/pages/prayer-times-upload-page/file-dropzone";
 
 export default function PrayerTimesUploadPage() {
 	const { mosque } = useMosque();

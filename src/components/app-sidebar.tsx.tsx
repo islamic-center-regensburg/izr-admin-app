@@ -72,7 +72,15 @@ export function AppSidebar() {
 											<SidebarMenuSubButton asChild>
 												<Link to="/prayer-times/test-prayer-times">
 													<TestTube2 />
-													<span>Prayer Times Test</span>
+													<span>Prayer Times</span>
+												</Link>
+											</SidebarMenuSubButton>
+										</SidebarMenuSubItem>
+										<SidebarMenuSubItem>
+											<SidebarMenuSubButton asChild>
+												<Link to="/prayer-times/mosque-prayer-times">
+													<TestTube2 />
+													<span>Mosque Prayer Times</span>
 												</Link>
 											</SidebarMenuSubButton>
 										</SidebarMenuSubItem>

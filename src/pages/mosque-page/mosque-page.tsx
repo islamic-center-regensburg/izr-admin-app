@@ -1,4 +1,4 @@
-import { MosqueForm } from "@/components/mosque-form";
+import { MosqueForm } from "@/pages/mosque-page/mosque-form";
 
 export default function MosquePage() {
 	return (
