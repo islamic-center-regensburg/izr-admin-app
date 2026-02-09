@@ -1,22 +1,20 @@
-import type { MutationOptions } from "@tanstack/react-query";
-import {
-	type PrayerTimeUploadOut,
-	type UploadPrayerTimesData,
-	uploadPrayerTimes,
-} from "../gen";
+import { type UploadPrayerTimesData, uploadPrayerTimes } from "../gen";
 import type { MutationCallbackOptions } from "../utils/types";
 
 export const uploadPrayerTimesMuationOptions = ({
 	onError,
 	onSuccess,
-}: MutationCallbackOptions): MutationOptions<
-	PrayerTimeUploadOut | undefined,
-	Error,
-	UploadPrayerTimesData
-> => {
+}: MutationCallbackOptions) => {
 	return {
-		mutationFn: async ({ body, query }: UploadPrayerTimesData) => {
-			const response = await uploadPrayerTimes({ body, query });
+		mutationFn: async ({ body, query }: Partial<UploadPrayerTimesData>) => {
+			const response = await uploadPrayerTimes({
+				query: query as UploadPrayerTimesData["query"],
+				body: body as UploadPrayerTimesData["body"],
+			});
+
+			if (response.error) {
+				throw response.error;
+			}
 			return response.data;
 		},
 

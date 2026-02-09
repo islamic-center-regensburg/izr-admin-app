@@ -1,9 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import PrayerTimesUploadPage from "@/pages/prayer-times-upload-page";
 
 export const Route = createFileRoute("/prayer-times/upload-prayer-times")({
-	component: RouteComponent,
+	component: PrayerTimesUploadPage,
 });
-
-function RouteComponent() {
-	return <div>Hello "/prayer-times/upload-prayer-times"!</div>;
-}

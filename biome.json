@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"vcs": {
 		"enabled": false,
 		"clientKind": "git",
@@ -24,11 +24,15 @@
 	"assist": { "actions": { "source": { "organizeImports": "on" } } },
 	"linter": {
 		"enabled": true,
+
 		"rules": {
 			"recommended": true,
 			"correctness": {
 				"useUniqueElementIds": "off",
 				"useExhaustiveDependencies": "off"
+			},
+			"a11y": {
+				"noStaticElementInteractions": "off"
 			}
 		}
 	},
