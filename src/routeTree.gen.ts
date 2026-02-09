@@ -9,38 +9,116 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MosqueRouteImport } from './routes/mosque'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PrayerTimesUploadPrayerTimesRouteImport } from './routes/prayer-times/upload-prayer-times'
+import { Route as PrayerTimesTestPrayerTimesRouteImport } from './routes/prayer-times/test-prayer-times'
+import { Route as EventsListEventsRouteImport } from './routes/events/list-events'
+import { Route as EventsCreateEventRouteImport } from './routes/events/create-event'
 
+const MosqueRoute = MosqueRouteImport.update({
+  id: '/mosque',
+  path: '/mosque',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrayerTimesUploadPrayerTimesRoute =
+  PrayerTimesUploadPrayerTimesRouteImport.update({
+    id: '/prayer-times/upload-prayer-times',
+    path: '/prayer-times/upload-prayer-times',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PrayerTimesTestPrayerTimesRoute =
+  PrayerTimesTestPrayerTimesRouteImport.update({
+    id: '/prayer-times/test-prayer-times',
+    path: '/prayer-times/test-prayer-times',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const EventsListEventsRoute = EventsListEventsRouteImport.update({
+  id: '/events/list-events',
+  path: '/events/list-events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsCreateEventRoute = EventsCreateEventRouteImport.update({
+  id: '/events/create-event',
+  path: '/events/create-event',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/mosque': typeof MosqueRoute
+  '/events/create-event': typeof EventsCreateEventRoute
+  '/events/list-events': typeof EventsListEventsRoute
+  '/prayer-times/test-prayer-times': typeof PrayerTimesTestPrayerTimesRoute
+  '/prayer-times/upload-prayer-times': typeof PrayerTimesUploadPrayerTimesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/mosque': typeof MosqueRoute
+  '/events/create-event': typeof EventsCreateEventRoute
+  '/events/list-events': typeof EventsListEventsRoute
+  '/prayer-times/test-prayer-times': typeof PrayerTimesTestPrayerTimesRoute
+  '/prayer-times/upload-prayer-times': typeof PrayerTimesUploadPrayerTimesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/mosque': typeof MosqueRoute
+  '/events/create-event': typeof EventsCreateEventRoute
+  '/events/list-events': typeof EventsListEventsRoute
+  '/prayer-times/test-prayer-times': typeof PrayerTimesTestPrayerTimesRoute
+  '/prayer-times/upload-prayer-times': typeof PrayerTimesUploadPrayerTimesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/mosque'
+    | '/events/create-event'
+    | '/events/list-events'
+    | '/prayer-times/test-prayer-times'
+    | '/prayer-times/upload-prayer-times'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/mosque'
+    | '/events/create-event'
+    | '/events/list-events'
+    | '/prayer-times/test-prayer-times'
+    | '/prayer-times/upload-prayer-times'
+  id:
+    | '__root__'
+    | '/'
+    | '/mosque'
+    | '/events/create-event'
+    | '/events/list-events'
+    | '/prayer-times/test-prayer-times'
+    | '/prayer-times/upload-prayer-times'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MosqueRoute: typeof MosqueRoute
+  EventsCreateEventRoute: typeof EventsCreateEventRoute
+  EventsListEventsRoute: typeof EventsListEventsRoute
+  PrayerTimesTestPrayerTimesRoute: typeof PrayerTimesTestPrayerTimesRoute
+  PrayerTimesUploadPrayerTimesRoute: typeof PrayerTimesUploadPrayerTimesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/mosque': {
+      id: '/mosque'
+      path: '/mosque'
+      fullPath: '/mosque'
+      preLoaderRoute: typeof MosqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +126,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/prayer-times/upload-prayer-times': {
+      id: '/prayer-times/upload-prayer-times'
+      path: '/prayer-times/upload-prayer-times'
+      fullPath: '/prayer-times/upload-prayer-times'
+      preLoaderRoute: typeof PrayerTimesUploadPrayerTimesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prayer-times/test-prayer-times': {
+      id: '/prayer-times/test-prayer-times'
+      path: '/prayer-times/test-prayer-times'
+      fullPath: '/prayer-times/test-prayer-times'
+      preLoaderRoute: typeof PrayerTimesTestPrayerTimesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/list-events': {
+      id: '/events/list-events'
+      path: '/events/list-events'
+      fullPath: '/events/list-events'
+      preLoaderRoute: typeof EventsListEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events/create-event': {
+      id: '/events/create-event'
+      path: '/events/create-event'
+      fullPath: '/events/create-event'
+      preLoaderRoute: typeof EventsCreateEventRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MosqueRoute: MosqueRoute,
+  EventsCreateEventRoute: EventsCreateEventRoute,
+  EventsListEventsRoute: EventsListEventsRoute,
+  PrayerTimesTestPrayerTimesRoute: PrayerTimesTestPrayerTimesRoute,
+  PrayerTimesUploadPrayerTimesRoute: PrayerTimesUploadPrayerTimesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
