@@ -107,7 +107,7 @@ export function MosqueForm() {
 	}
 
 	return (
-		<div className="w-full max-w-2xl mx-auto p-6">
+		<div className="w-full max-w-4xl mx-auto p-6">
 			<div className="mb-6 flex items-center justify-between">
 				<h1 className="text-3xl font-bold">{mosque.name}</h1>
 				{!isEditing && (
@@ -124,7 +124,7 @@ export function MosqueForm() {
 			</div>
 
 			<form onSubmit={handleSubmit} className="space-y-6">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 					{/* Name */}
 					<div className="space-y-2">
 						<Label htmlFor="name">Name</Label>
