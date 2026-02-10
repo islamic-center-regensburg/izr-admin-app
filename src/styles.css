@@ -137,5 +137,5 @@ body {
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
+  src: url('/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf') format('truetype-variations');
 }
