@@ -1,14 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-	Building2,
-	Calendar,
-	ChevronDown,
-	Clock,
-	House,
-	ListTodo,
-	Plus,
-	Upload,
-} from "lucide-react";
+import { Building2, ChevronDown } from "lucide-react";
 import { Collapsible } from "radix-ui";
 import {
 	Sidebar,
@@ -24,8 +15,11 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { useNavItems } from "@/hooks/use-nav-items";
 
 export function AppSidebar() {
+	const navItems = useNavItems();
+
 	return (
 		<Sidebar>
 			<SidebarHeader>
@@ -38,97 +32,60 @@ export function AppSidebar() {
 				<SidebarGroup>
 					<SidebarGroupLabel>Navigation</SidebarGroupLabel>
 					<SidebarMenu>
-						{/* Mosque */}
-						<SidebarMenuItem>
-							<SidebarMenuButton asChild>
-								<Link to="/mosque">
-									<Building2 />
-									<span>Mosque</span>
-								</Link>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
+						{navItems.map((item) => {
+							if (item.type === "link") {
+								const Icon = item.icon;
 
-						{/* Prayer Times with Children */}
-						<Collapsible.Root defaultOpen className="group/collapsible">
-							<SidebarMenuItem>
-								<Collapsible.Trigger asChild>
-									<SidebarMenuButton>
-										<Clock />
-										<span>Prayer Times</span>
-										<ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-									</SidebarMenuButton>
-								</Collapsible.Trigger>
-								<Collapsible.Content>
-									<SidebarMenuSub>
-										<SidebarMenuSubItem>
-											<SidebarMenuSubItem>
-												<SidebarMenuSubButton asChild>
-													<Link to="/prayer-times/prayer-iqama">
-														<Clock />
-														<span>Iqama Times</span>
-													</Link>
-												</SidebarMenuSubButton>
-											</SidebarMenuSubItem>
-											<SidebarMenuSubButton asChild>
-												<Link to="/prayer-times/upload-prayer-times">
-													<Upload />
-													<span>Prayer Times Upload</span>
-												</Link>
-											</SidebarMenuSubButton>
-										</SidebarMenuSubItem>
-										<SidebarMenuSubItem>
-											<SidebarMenuSubButton asChild>
-												<Link to="/prayer-times/test-prayer-times">
-													<Calendar />
-													<span>Prayer Times</span>
-												</Link>
-											</SidebarMenuSubButton>
-										</SidebarMenuSubItem>
-										<SidebarMenuSubItem>
-											<SidebarMenuSubButton asChild>
-												<Link to="/prayer-times/mosque-prayer-times">
-													<House />
-													<span>Mosque Prayer Times</span>
-												</Link>
-											</SidebarMenuSubButton>
-										</SidebarMenuSubItem>
-									</SidebarMenuSub>
-								</Collapsible.Content>
-							</SidebarMenuItem>
-						</Collapsible.Root>
+								return (
+									<SidebarMenuItem key={item.to}>
+										<SidebarMenuButton asChild>
+											<Link to={item.to}>
+												<Icon />
+												<span>{item.label}</span>
+											</Link>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								);
+							}
 
-						{/* Events with Children */}
-						<Collapsible.Root defaultOpen className="group/collapsible">
-							<SidebarMenuItem>
-								<Collapsible.Trigger asChild>
-									<SidebarMenuButton>
-										<Calendar />
-										<span>Events</span>
-										<ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-									</SidebarMenuButton>
-								</Collapsible.Trigger>
-								<Collapsible.Content>
-									<SidebarMenuSub>
-										<SidebarMenuSubItem>
-											<SidebarMenuSubButton asChild>
-												<Link to="/events/list-events">
-													<ListTodo />
-													<span>Show Events</span>
-												</Link>
-											</SidebarMenuSubButton>
-										</SidebarMenuSubItem>
-										<SidebarMenuSubItem>
-											<SidebarMenuSubButton asChild>
-												<Link to="/events/create-event">
-													<Plus />
-													<span>Create Event</span>
-												</Link>
-											</SidebarMenuSubButton>
-										</SidebarMenuSubItem>
-									</SidebarMenuSub>
-								</Collapsible.Content>
-							</SidebarMenuItem>
-						</Collapsible.Root>
+							const Icon = item.icon;
+
+							return (
+								<Collapsible.Root
+									key={item.label}
+									defaultOpen={item.defaultOpen}
+									className="group/collapsible"
+								>
+									<SidebarMenuItem>
+										<Collapsible.Trigger asChild>
+											<SidebarMenuButton>
+												<Icon />
+												<span>{item.label}</span>
+												<ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+											</SidebarMenuButton>
+										</Collapsible.Trigger>
+										<Collapsible.Content>
+											<SidebarMenuSub>
+												{item.children.map((child) => {
+													const ChildIcon = child.icon;
+
+													return (
+														<SidebarMenuSubItem key={child.to}>
+															<SidebarMenuSubButton asChild>
+																<Link to={child.to}>
+																	<ChildIcon />
+																	<span>{child.label}</span>
+																</Link>
+															</SidebarMenuSubButton>
+														</SidebarMenuSubItem>
+													);
+												})}
+											</SidebarMenuSub>
+										</Collapsible.Content>
+									</SidebarMenuItem>
+								</Collapsible.Root>
+							);
+						})}
 					</SidebarMenu>
 				</SidebarGroup>
 			</SidebarContent>

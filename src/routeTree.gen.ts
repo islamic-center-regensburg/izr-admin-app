@@ -9,20 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MosqueRouteImport } from './routes/mosque'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PrayerTimesUploadPrayerTimesRouteImport } from './routes/prayer-times/upload-prayer-times'
 import { Route as PrayerTimesTestPrayerTimesRouteImport } from './routes/prayer-times/test-prayer-times'
 import { Route as PrayerTimesPrayerIqamaRouteImport } from './routes/prayer-times/prayer-iqama'
 import { Route as PrayerTimesMosquePrayerTimesRouteImport } from './routes/prayer-times/mosque-prayer-times'
+import { Route as MosqueMosqueDetailsRouteImport } from './routes/mosque/mosque-details'
+import { Route as MosqueMosqueConfigRouteImport } from './routes/mosque/mosque-config'
 import { Route as EventsListEventsRouteImport } from './routes/events/list-events'
 import { Route as EventsCreateEventRouteImport } from './routes/events/create-event'
 
-const MosqueRoute = MosqueRouteImport.update({
-  id: '/mosque',
-  path: '/mosque',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -51,6 +47,16 @@ const PrayerTimesMosquePrayerTimesRoute =
     path: '/prayer-times/mosque-prayer-times',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MosqueMosqueDetailsRoute = MosqueMosqueDetailsRouteImport.update({
+  id: '/mosque/mosque-details',
+  path: '/mosque/mosque-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MosqueMosqueConfigRoute = MosqueMosqueConfigRouteImport.update({
+  id: '/mosque/mosque-config',
+  path: '/mosque/mosque-config',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EventsListEventsRoute = EventsListEventsRouteImport.update({
   id: '/events/list-events',
   path: '/events/list-events',
@@ -64,9 +70,10 @@ const EventsCreateEventRoute = EventsCreateEventRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/mosque': typeof MosqueRoute
   '/events/create-event': typeof EventsCreateEventRoute
   '/events/list-events': typeof EventsListEventsRoute
+  '/mosque/mosque-config': typeof MosqueMosqueConfigRoute
+  '/mosque/mosque-details': typeof MosqueMosqueDetailsRoute
   '/prayer-times/mosque-prayer-times': typeof PrayerTimesMosquePrayerTimesRoute
   '/prayer-times/prayer-iqama': typeof PrayerTimesPrayerIqamaRoute
   '/prayer-times/test-prayer-times': typeof PrayerTimesTestPrayerTimesRoute
@@ -74,9 +81,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/mosque': typeof MosqueRoute
   '/events/create-event': typeof EventsCreateEventRoute
   '/events/list-events': typeof EventsListEventsRoute
+  '/mosque/mosque-config': typeof MosqueMosqueConfigRoute
+  '/mosque/mosque-details': typeof MosqueMosqueDetailsRoute
   '/prayer-times/mosque-prayer-times': typeof PrayerTimesMosquePrayerTimesRoute
   '/prayer-times/prayer-iqama': typeof PrayerTimesPrayerIqamaRoute
   '/prayer-times/test-prayer-times': typeof PrayerTimesTestPrayerTimesRoute
@@ -85,9 +93,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/mosque': typeof MosqueRoute
   '/events/create-event': typeof EventsCreateEventRoute
   '/events/list-events': typeof EventsListEventsRoute
+  '/mosque/mosque-config': typeof MosqueMosqueConfigRoute
+  '/mosque/mosque-details': typeof MosqueMosqueDetailsRoute
   '/prayer-times/mosque-prayer-times': typeof PrayerTimesMosquePrayerTimesRoute
   '/prayer-times/prayer-iqama': typeof PrayerTimesPrayerIqamaRoute
   '/prayer-times/test-prayer-times': typeof PrayerTimesTestPrayerTimesRoute
@@ -97,9 +106,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/mosque'
     | '/events/create-event'
     | '/events/list-events'
+    | '/mosque/mosque-config'
+    | '/mosque/mosque-details'
     | '/prayer-times/mosque-prayer-times'
     | '/prayer-times/prayer-iqama'
     | '/prayer-times/test-prayer-times'
@@ -107,9 +117,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/mosque'
     | '/events/create-event'
     | '/events/list-events'
+    | '/mosque/mosque-config'
+    | '/mosque/mosque-details'
     | '/prayer-times/mosque-prayer-times'
     | '/prayer-times/prayer-iqama'
     | '/prayer-times/test-prayer-times'
@@ -117,9 +128,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/mosque'
     | '/events/create-event'
     | '/events/list-events'
+    | '/mosque/mosque-config'
+    | '/mosque/mosque-details'
     | '/prayer-times/mosque-prayer-times'
     | '/prayer-times/prayer-iqama'
     | '/prayer-times/test-prayer-times'
@@ -128,9 +140,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  MosqueRoute: typeof MosqueRoute
   EventsCreateEventRoute: typeof EventsCreateEventRoute
   EventsListEventsRoute: typeof EventsListEventsRoute
+  MosqueMosqueConfigRoute: typeof MosqueMosqueConfigRoute
+  MosqueMosqueDetailsRoute: typeof MosqueMosqueDetailsRoute
   PrayerTimesMosquePrayerTimesRoute: typeof PrayerTimesMosquePrayerTimesRoute
   PrayerTimesPrayerIqamaRoute: typeof PrayerTimesPrayerIqamaRoute
   PrayerTimesTestPrayerTimesRoute: typeof PrayerTimesTestPrayerTimesRoute
@@ -139,13 +152,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/mosque': {
-      id: '/mosque'
-      path: '/mosque'
-      fullPath: '/mosque'
-      preLoaderRoute: typeof MosqueRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -181,6 +187,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrayerTimesMosquePrayerTimesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mosque/mosque-details': {
+      id: '/mosque/mosque-details'
+      path: '/mosque/mosque-details'
+      fullPath: '/mosque/mosque-details'
+      preLoaderRoute: typeof MosqueMosqueDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mosque/mosque-config': {
+      id: '/mosque/mosque-config'
+      path: '/mosque/mosque-config'
+      fullPath: '/mosque/mosque-config'
+      preLoaderRoute: typeof MosqueMosqueConfigRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/events/list-events': {
       id: '/events/list-events'
       path: '/events/list-events'
@@ -200,9 +220,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  MosqueRoute: MosqueRoute,
   EventsCreateEventRoute: EventsCreateEventRoute,
   EventsListEventsRoute: EventsListEventsRoute,
+  MosqueMosqueConfigRoute: MosqueMosqueConfigRoute,
+  MosqueMosqueDetailsRoute: MosqueMosqueDetailsRoute,
   PrayerTimesMosquePrayerTimesRoute: PrayerTimesMosquePrayerTimesRoute,
   PrayerTimesPrayerIqamaRoute: PrayerTimesPrayerIqamaRoute,
   PrayerTimesTestPrayerTimesRoute: PrayerTimesTestPrayerTimesRoute,
