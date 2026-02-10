@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import {
+	type AddPrayerConfigData,
 	addPrayerConfig,
 	type PrayerConfigurationIn,
 	type PrayerTimeConfigurationUpdate,
@@ -15,10 +16,10 @@ export const createPrayerConfigMutationOptions = ({
 	const queryClient = useQueryClient();
 
 	return {
-		mutationFn: async (mosque_id: string, body: PrayerConfigurationIn) => {
+		mutationFn: async ({ body, query }: Partial<AddPrayerConfigData>) => {
 			const response = await addPrayerConfig({
-				body: body,
-				query: { mosque_id },
+				body: body as PrayerConfigurationIn,
+				query: query as AddPrayerConfigData["query"],
 			});
 			return response.data;
 		},
