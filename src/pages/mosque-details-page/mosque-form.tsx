@@ -110,17 +110,6 @@ export function MosqueForm() {
 		<div className="w-full max-w-4xl mx-auto p-6">
 			<div className="mb-6 flex items-center justify-between">
 				<h1 className="text-3xl font-bold">{mosque.name}</h1>
-				{!isEditing && (
-					<Button
-						onClick={() => {
-							setIsEditing(true);
-							setErrors({});
-						}}
-						variant="outline"
-					>
-						Edit
-					</Button>
-				)}
 			</div>
 
 			<form onSubmit={handleSubmit} className="space-y-6">
@@ -242,9 +231,8 @@ export function MosqueForm() {
 						)}
 					</div>
 				</div>
-
 				{/* Action Buttons */}
-				{isEditing && (
+				{isEditing ? (
 					<div className="flex gap-3 justify-end pt-4">
 						<Button
 							type="button"
@@ -259,6 +247,19 @@ export function MosqueForm() {
 						</Button>
 						<Button type="submit" disabled={updateMutation.isPending}>
 							{updateMutation.isPending ? "Saving..." : "Save Changes"}
+						</Button>
+					</div>
+				) : (
+					<div className="flex gap-3 justify-end pt-4">
+						<Button
+							onClick={() => {
+								setIsEditing(true);
+								setErrors({});
+							}}
+							variant="outline"
+							className="ml-auto"
+						>
+							Edit
 						</Button>
 					</div>
 				)}
