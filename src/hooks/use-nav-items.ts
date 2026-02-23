@@ -5,8 +5,6 @@ import {
 	Cog,
 	House,
 	ListCollapse,
-	ListTodo,
-	Plus,
 	Upload,
 } from "lucide-react";
 import type { FileRoutesByTo } from "@/routeTree.gen";
@@ -80,22 +78,10 @@ const navItems: NavItem[] = [
 		],
 	},
 	{
-		type: "collapsible",
-		label: "Events",
+		type: "link",
+		label: "Posts",
 		icon: Calendar,
-		defaultOpen: true,
-		children: [
-			{
-				label: "Show Events",
-				to: "/events/list-events",
-				icon: ListTodo,
-			},
-			{
-				label: "Create Event",
-				to: "/events/create-event",
-				icon: Plus,
-			},
-		],
+		to: "/posts/list-posts",
 	},
 ];
 

@@ -37,27 +37,22 @@ function PrayerIqama() {
 				</p>
 			</div>
 
-			<div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-				{/* Form Section */}
-				<div className="lg:col-span-1">
-					<div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-						<h2 className="text-xl font-semibold mb-4">Add New Iqama Time</h2>
-						<PrayerIqamaForm key={refetchKey} onSuccess={handleFormSuccess} />
-					</div>
-				</div>
-
+			<div className="flex flex-col gap-5">
 				{/* List Section */}
 				<div className="lg:col-span-2">
-					<div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-						<h2 className="text-xl font-semibold mb-4">
-							Current Iqama Configuration
-						</h2>
-						<PrayerIqamaList
-							iqamas={iqamas || []}
-							isLoading={isLoading}
-							onRefresh={refetch}
-						/>
-					</div>
+					<h2 className="text-xl font-semibold mb-4">
+						Current Iqama Configuration
+					</h2>
+					<PrayerIqamaList
+						iqamas={iqamas || []}
+						isLoading={isLoading}
+						onRefresh={refetch}
+					/>
+				</div>
+				{/* Form Section */}
+				<div className="lg:col-span-1">
+					<h2 className="text-xl font-semibold mb-4">Add New Iqama Time</h2>
+					<PrayerIqamaForm key={refetchKey} onSuccess={handleFormSuccess} />
 				</div>
 			</div>
 		</div>

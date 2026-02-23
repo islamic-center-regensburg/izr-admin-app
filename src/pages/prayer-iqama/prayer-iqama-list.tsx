@@ -109,7 +109,7 @@ export function PrayerIqamaList({
 							<td className="border border-gray-300 p-3">
 								{PRAYER_NAMES_DISPLAY[iqama.prayer_name]}
 							</td>
-							<td className="border border-gray-300 p-3">
+							<td className="border border-gray-300 p-3 ">
 								{editingId === iqama.id ? (
 									<select
 										value={(editData.mode as string) || iqama.mode}
