@@ -2,7 +2,7 @@
 
 import { type Client, formDataBodySerializer, type Options as Options2, type TDataShape } from './client';
 import { client } from './client.gen';
-import type { AddMosqueData, AddMosqueErrors, AddMosqueResponses, AddPrayerConfigData, AddPrayerConfigErrors, AddPrayerConfigResponses, CreateEventData, CreateEventErrors, CreateEventResponses, CreatePrayerIqamaData, CreatePrayerIqamaErrors, CreatePrayerIqamaResponses, CreateTranslationForEventData, CreateTranslationForEventErrors, CreateTranslationForEventResponses, DeleteMediaData, DeleteMediaErrors, DeleteMediaResponses, GetAllEventsData, GetAllEventsErrors, GetAllEventsResponses, GetAllMosquesData, GetAllMosquesErrors, GetAllMosquesResponses, GetAllPrayerConfigsData, GetAllPrayerConfigsErrors, GetAllPrayerConfigsResponses, GetAllPrayerIqamasData, GetAllPrayerIqamasErrors, GetAllPrayerIqamasResponses, GetCalculationMethodsData, GetCalculationMethodsErrors, GetCalculationMethodsResponses, GetEventData, GetEventErrors, GetEventResponses, GetMediaData, GetMediaErrors, GetMediaResponses, GetMosqueByIdData, GetMosqueByIdErrors, GetMosqueByIdResponses, GetPrayerIqamasForMosqueData, GetPrayerIqamasForMosqueErrors, GetPrayerIqamasForMosqueResponses, GetPrayerTimesData, GetPrayerTimesErrors, GetPrayerTimesForMosqueData, GetPrayerTimesForMosqueErrors, GetPrayerTimesForMosqueResponses, GetPrayerTimesResponses, UpdateMosqueData, UpdateMosqueErrors, UpdateMosqueResponses, UpdatePrayerConfigData, UpdatePrayerConfigErrors, UpdatePrayerConfigResponses, UpdatePrayerIqamaData, UpdatePrayerIqamaErrors, UpdatePrayerIqamaResponses, UploadPrayerTimesData, UploadPrayerTimesErrors, UploadPrayerTimesResponses } from './types.gen';
+import type { AddMosqueData, AddMosqueErrors, AddMosqueResponses, AddPrayerConfigData, AddPrayerConfigErrors, AddPrayerConfigResponses, CreatePostData, CreatePostErrors, CreatePostResponses, CreatePrayerIqamaData, CreatePrayerIqamaErrors, CreatePrayerIqamaResponses, CreateTranslationForPostData, CreateTranslationForPostErrors, CreateTranslationForPostResponses, DeletePostData, DeletePostErrors, DeletePostMediaData, DeletePostMediaErrors, DeletePostMediaResponses, DeletePostResponses, DeleteTranslationForPostData, DeleteTranslationForPostErrors, DeleteTranslationForPostResponses, GetAllMosquesData, GetAllMosquesErrors, GetAllMosquesResponses, GetAllPostsData, GetAllPostsErrors, GetAllPostsResponses, GetAllPrayerConfigsData, GetAllPrayerConfigsErrors, GetAllPrayerConfigsResponses, GetAllPrayerIqamasData, GetAllPrayerIqamasErrors, GetAllPrayerIqamasResponses, GetCalculationMethodsData, GetCalculationMethodsErrors, GetCalculationMethodsResponses, GetMosqueByIdData, GetMosqueByIdErrors, GetMosqueByIdResponses, GetPostData, GetPostErrors, GetPostResponses, GetPrayerIqamasForMosqueData, GetPrayerIqamasForMosqueErrors, GetPrayerIqamasForMosqueResponses, GetPrayerTimesData, GetPrayerTimesErrors, GetPrayerTimesForMosqueData, GetPrayerTimesForMosqueErrors, GetPrayerTimesForMosqueResponses, GetPrayerTimesResponses, UpdateMosqueData, UpdateMosqueErrors, UpdateMosqueResponses, UpdatePrayerConfigData, UpdatePrayerConfigErrors, UpdatePrayerConfigResponses, UpdatePrayerIqamaData, UpdatePrayerIqamaErrors, UpdatePrayerIqamaResponses, UpdateTranslationForPostData, UpdateTranslationForPostErrors, UpdateTranslationForPostResponses, UploadPostMediaData, UploadPostMediaErrors, UploadPostMediaResponses, UploadPrayerTimesData, UploadPrayerTimesErrors, UploadPrayerTimesResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -144,36 +144,65 @@ export const updatePrayerIqama = <ThrowOnError extends boolean = false>(options:
 export const getPrayerIqamasForMosque = <ThrowOnError extends boolean = false>(options: Options<GetPrayerIqamasForMosqueData, ThrowOnError>) => (options.client ?? client).get<GetPrayerIqamasForMosqueResponses, GetPrayerIqamasForMosqueErrors, ThrowOnError>({ url: '/prayer_iqama/{mosque_id}', ...options });
 
 /**
- * Delete all Media in Directory
+ * Get posts for mosque
  */
-export const deleteMedia = <ThrowOnError extends boolean = false>(options: Options<DeleteMediaData, ThrowOnError>) => (options.client ?? client).delete<DeleteMediaResponses, DeleteMediaErrors, ThrowOnError>({ url: '/media', ...options });
+export const getAllPosts = <ThrowOnError extends boolean = false>(options: Options<GetAllPostsData, ThrowOnError>) => (options.client ?? client).get<GetAllPostsResponses, GetAllPostsErrors, ThrowOnError>({ url: '/posts/all/{mosque_id}', ...options });
 
 /**
- * List all Media in Directory
+ * Delete post
  */
-export const getMedia = <ThrowOnError extends boolean = false>(options: Options<GetMediaData, ThrowOnError>) => (options.client ?? client).get<GetMediaResponses, GetMediaErrors, ThrowOnError>({ url: '/media', ...options });
+export const deletePost = <ThrowOnError extends boolean = false>(options: Options<DeletePostData, ThrowOnError>) => (options.client ?? client).delete<DeletePostResponses, DeletePostErrors, ThrowOnError>({ url: '/posts/{post_id}', ...options });
 
 /**
- * Get events for mosque
+ * Get post by ID
  */
-export const getAllEvents = <ThrowOnError extends boolean = false>(options: Options<GetAllEventsData, ThrowOnError>) => (options.client ?? client).get<GetAllEventsResponses, GetAllEventsErrors, ThrowOnError>({ url: '/events/all/{mosque_id}', ...options });
+export const getPost = <ThrowOnError extends boolean = false>(options: Options<GetPostData, ThrowOnError>) => (options.client ?? client).get<GetPostResponses, GetPostErrors, ThrowOnError>({ url: '/posts/{post_id}', ...options });
 
 /**
- * Get event by ID
+ * Create post
  */
-export const getEvent = <ThrowOnError extends boolean = false>(options: Options<GetEventData, ThrowOnError>) => (options.client ?? client).get<GetEventResponses, GetEventErrors, ThrowOnError>({ url: '/events/{event_id}', ...options });
+export const createPost = <ThrowOnError extends boolean = false>(options: Options<CreatePostData, ThrowOnError>) => (options.client ?? client).post<CreatePostResponses, CreatePostErrors, ThrowOnError>({ url: '/posts', ...options });
 
 /**
- * Create event
+ * Create post translation
  */
-export const createEvent = <ThrowOnError extends boolean = false>(options: Options<CreateEventData, ThrowOnError>) => (options.client ?? client).post<CreateEventResponses, CreateEventErrors, ThrowOnError>({ url: '/events', ...options });
+export const createTranslationForPost = <ThrowOnError extends boolean = false>(options: Options<CreateTranslationForPostData, ThrowOnError>) => (options.client ?? client).post<CreateTranslationForPostResponses, CreateTranslationForPostErrors, ThrowOnError>({
+    url: '/posts/{post_id}/translations',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
 
 /**
- * Create event translation
+ * Delete post translation
  */
-export const createTranslationForEvent = <ThrowOnError extends boolean = false>(options: Options<CreateTranslationForEventData, ThrowOnError>) => (options.client ?? client).post<CreateTranslationForEventResponses, CreateTranslationForEventErrors, ThrowOnError>({
+export const deleteTranslationForPost = <ThrowOnError extends boolean = false>(options: Options<DeleteTranslationForPostData, ThrowOnError>) => (options.client ?? client).delete<DeleteTranslationForPostResponses, DeleteTranslationForPostErrors, ThrowOnError>({ url: '/posts/{post_id}/translations/{translation_id}', ...options });
+
+/**
+ * Update post translation
+ */
+export const updateTranslationForPost = <ThrowOnError extends boolean = false>(options: Options<UpdateTranslationForPostData, ThrowOnError>) => (options.client ?? client).patch<UpdateTranslationForPostResponses, UpdateTranslationForPostErrors, ThrowOnError>({
+    url: '/posts/{post_id}/translations/{translation_id}',
+    ...options,
+    headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+    }
+});
+
+/**
+ * Delete post translation media
+ */
+export const deletePostMedia = <ThrowOnError extends boolean = false>(options: Options<DeletePostMediaData, ThrowOnError>) => (options.client ?? client).delete<DeletePostMediaResponses, DeletePostMediaErrors, ThrowOnError>({ url: '/posts/media/{translation_id}', ...options });
+
+/**
+ * Upload post translation media
+ */
+export const uploadPostMedia = <ThrowOnError extends boolean = false>(options: Options<UploadPostMediaData, ThrowOnError>) => (options.client ?? client).post<UploadPostMediaResponses, UploadPostMediaErrors, ThrowOnError>({
     ...formDataBodySerializer,
-    url: '/events/{event_id}/translations',
+    url: '/posts/media/{translation_id}',
     ...options,
     headers: {
         'Content-Type': null,
