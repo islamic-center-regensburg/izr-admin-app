@@ -20,7 +20,7 @@ function MosqueConfigPage() {
 	const { data: calculationMethods } = useQuery({
 		queryKey: ["prayer-configs", "calculation-methods"],
 		queryFn: async () => {
-			const response = await getCalculationMethods();
+			const response = await getCalculationMethods({ query: { lang: "en" } });
 			return response.data || {};
 		},
 	});

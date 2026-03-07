@@ -1298,7 +1298,12 @@ export type UpdatePrayerConfigResponse = UpdatePrayerConfigResponses[keyof Updat
 export type GetCalculationMethodsData = {
     body?: never;
     path?: never;
-    query?: never;
+    query: {
+        /**
+         * Lang
+         */
+        lang: 'en' | 'ar' | 'de';
+    };
     url: '/prayer_configs/calculation_methods';
 };
 

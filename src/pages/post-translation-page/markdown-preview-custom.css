@@ -1,0 +1,381 @@
+/* Base markdown preview styles */
+.markdown-preview {
+	--preview-color-fg: hsl(var(--foreground));
+	--preview-color-muted-fg: hsl(var(--muted-foreground));
+	--preview-color-border: hsl(var(--border));
+	--preview-color-muted: hsl(var(--muted));
+	--preview-color-primary: hsl(var(--primary));
+}
+
+/* RTL/LTR base styles */
+.markdown-preview.rtl {
+	direction: rtl;
+	text-align: right;
+}
+
+.markdown-preview.ltr {
+	direction: ltr;
+	text-align: left;
+}
+
+/* Arabic content specific styles */
+.markdown-preview.arabic-content {
+	font-family: "Kufi", "Arial Unicode MS", sans-serif;
+	line-height: 1.8;
+	font-size: 1rem;
+}
+
+.markdown-preview.arabic-content,
+.markdown-preview.arabic-content :not(pre):not(code):not(.preview-inline-code) {
+	font-family: "Kufi", "Arial Unicode MS", sans-serif;
+}
+
+.markdown-preview.arabic-content
+	:is(
+		.preview-h1,
+		.preview-h2,
+		.preview-h3,
+		.preview-h4,
+		.preview-h5,
+		.preview-h6,
+		.preview-p,
+		.preview-li,
+		.preview-link,
+		.preview-strong,
+		.preview-em,
+		.preview-th,
+		.preview-td,
+		.preview-blockquote
+	) {
+	font-family: inherit;
+}
+
+/* Text direction classes */
+.rtl-text {
+	direction: rtl;
+	text-align: right;
+}
+
+.ltr-text {
+	direction: ltr;
+	text-align: left;
+}
+
+/* Headers */
+.preview-h1 {
+	font-size: 1.875rem;
+	font-weight: 700;
+	margin-bottom: 1rem;
+	margin-top: 1.5rem;
+	color: var(--preview-color-fg);
+	border-bottom: 1px solid var(--preview-color-border);
+	padding-bottom: 0.5rem;
+}
+
+.arabic-content .preview-h1 {
+	font-size: 2rem;
+	line-height: 1.4;
+}
+
+.preview-h2 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 0.75rem;
+	margin-top: 1.25rem;
+	color: var(--preview-color-fg);
+	border-bottom: 1px solid var(--preview-color-border);
+	padding-bottom: 0.25rem;
+}
+
+.arabic-content .preview-h2 {
+	font-size: 1.75rem;
+	line-height: 1.4;
+}
+
+.preview-h3 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	margin-top: 1rem;
+	color: var(--preview-color-fg);
+}
+
+.arabic-content .preview-h3 {
+	font-size: 1.5rem;
+	line-height: 1.4;
+}
+
+.preview-h4 {
+	font-size: 1.125rem;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+	margin-top: 0.75rem;
+	color: var(--preview-color-fg);
+}
+
+.arabic-content .preview-h4 {
+	font-size: 1.25rem;
+	line-height: 1.4;
+}
+
+.preview-h5 {
+	font-size: 1rem;
+	font-weight: 500;
+	margin-bottom: 0.25rem;
+	margin-top: 0.5rem;
+	color: var(--preview-color-fg);
+}
+
+.arabic-content .preview-h5 {
+	font-size: 1.125rem;
+	line-height: 1.4;
+}
+
+.preview-h6 {
+	font-size: 0.875rem;
+	font-weight: 500;
+	margin-bottom: 0.25rem;
+	margin-top: 0.5rem;
+	color: var(--preview-color-muted-fg);
+}
+
+.arabic-content .preview-h6 {
+	font-size: 1rem;
+	line-height: 1.4;
+}
+
+/* Paragraphs */
+.preview-p {
+	margin-bottom: 1rem;
+	line-height: 1.6;
+	color: var(--preview-color-fg);
+}
+
+.arabic-content .preview-p {
+	line-height: 1.8;
+	margin-bottom: 1.25rem;
+}
+
+/* Lists */
+.preview-ul {
+	list-style-type: disc;
+	margin-bottom: 1rem;
+	color: var(--preview-color-fg);
+}
+
+.preview-ul.ltr-list {
+	margin-left: 1.5rem;
+	margin-right: 0;
+}
+
+.preview-ul.rtl-list {
+	margin-right: 1.5rem;
+	margin-left: 0;
+}
+
+.preview-ol {
+	list-style-type: decimal;
+	margin-bottom: 1rem;
+	color: var(--preview-color-fg);
+}
+
+.preview-ol.ltr-list {
+	margin-left: 1.5rem;
+	margin-right: 0;
+}
+
+.preview-ol.rtl-list {
+	margin-right: 1.5rem;
+	margin-left: 0;
+}
+
+/* Arabic numerals for ordered lists */
+.preview-ol.arabic-numbers {
+	list-style-type: arabic-indic;
+}
+
+.preview-li {
+	margin-bottom: 0.25rem;
+	line-height: 1.5;
+	color: var(--preview-color-fg);
+}
+
+.arabic-content .preview-li {
+	line-height: 1.7;
+	margin-bottom: 0.5rem;
+}
+
+/* Nested lists */
+.preview-ul .preview-ul,
+.preview-ol .preview-ol,
+.preview-ul .preview-ol,
+.preview-ol .preview-ul {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+.preview-ul .preview-ul {
+	list-style-type: circle;
+}
+
+.preview-ul .preview-ul .preview-ul {
+	list-style-type: square;
+}
+
+/* Blockquotes */
+.preview-blockquote {
+	margin: 1rem 0;
+	font-style: italic;
+	color: var(--preview-color-muted-fg);
+	background-color: var(--preview-color-muted);
+	padding: 0.5rem 1rem;
+	border-radius: 0.375rem;
+}
+
+.preview-blockquote.ltr-blockquote {
+	border-left: 4px solid var(--preview-color-muted-fg);
+	border-radius: 0 0.375rem 0.375rem 0;
+}
+
+.preview-blockquote.rtl-blockquote {
+	border-right: 4px solid var(--preview-color-muted-fg);
+	border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.arabic-content .preview-blockquote {
+	line-height: 1.8;
+}
+
+/* Links */
+.preview-link {
+	color: var(--preview-color-primary);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.preview-link:hover {
+	opacity: 0.8;
+}
+
+/* Tables */
+.preview-table-wrapper {
+	overflow-x: auto;
+	margin-bottom: 1rem;
+}
+
+.preview-table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid var(--preview-color-border);
+}
+
+.preview-thead {
+	background-color: var(--preview-color-muted);
+}
+
+.preview-tr {
+	border-bottom: 1px solid var(--preview-color-border);
+}
+
+.preview-th,
+.preview-td {
+	border: 1px solid var(--preview-color-border);
+	padding: 0.5rem 1rem;
+	color: var(--preview-color-fg);
+}
+
+.preview-th.ltr-text,
+.preview-td.ltr-text {
+	text-align: left;
+}
+
+.preview-th.rtl-text,
+.preview-td.rtl-text {
+	text-align: right;
+}
+
+.preview-th {
+	font-weight: 600;
+}
+
+.preview-tbody .preview-tr:nth-child(even) {
+	background-color: var(--preview-color-muted);
+	opacity: 0.5;
+}
+
+/* Horizontal rule */
+.preview-hr {
+	border: none;
+	border-top: 1px solid var(--preview-color-border);
+	margin: 1.5rem 0;
+}
+
+/* Strong and emphasis */
+.preview-strong {
+	font-weight: 700;
+	color: var(--preview-color-fg);
+}
+
+.preview-em {
+	font-style: italic;
+	color: var(--preview-color-fg);
+}
+
+/* Code */
+.preview-inline-code {
+	background-color: var(--preview-color-muted);
+	padding: 0.125rem 0.375rem;
+	border-radius: 0.25rem;
+	font-size: 0.875rem;
+	font-family:
+		ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo,
+		monospace;
+	color: var(--preview-color-fg);
+	border: 1px solid var(--preview-color-border);
+	direction: ltr;
+	text-align: left;
+}
+
+.preview-pre {
+	background-color: var(--preview-color-muted);
+	padding: 1rem;
+	border-radius: 0.375rem;
+	overflow-x: auto;
+	margin: 1rem 0;
+	font-size: 0.875rem;
+	font-family:
+		ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo,
+		monospace;
+	color: var(--preview-color-fg);
+	border: 1px solid var(--preview-color-border);
+	direction: ltr;
+	text-align: left;
+}
+
+.preview-pre .preview-inline-code {
+	background: none;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+}
+
+/* Mixed content support */
+.markdown-preview .ltr-content {
+	direction: ltr;
+	text-align: left;
+	display: inline-block;
+}
+
+.markdown-preview .rtl-content {
+	direction: rtl;
+	text-align: right;
+	display: inline-block;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+	.markdown-preview {
+		--preview-color-fg: hsl(var(--foreground));
+		--preview-color-muted-fg: hsl(var(--muted-foreground));
+	}
+}

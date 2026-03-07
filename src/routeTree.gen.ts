@@ -18,8 +18,7 @@ import { Route as MosqueMosqueDetailsRouteImport } from './routes/mosque/mosque-
 import { Route as PostsListPostsIndexRouteImport } from './routes/posts/list-posts/index'
 import { Route as MosqueMosqueConfigIndexRouteImport } from './routes/mosque/mosque-config/index'
 import { Route as MosqueMosqueConfigConfigIdRouteImport } from './routes/mosque/mosque-config/$configId'
-import { Route as PostsListPostsTranslationLangRouteImport } from './routes/posts/list-posts/translation/$lang'
-import { Route as PostsListPostsTranslationLangEditRouteImport } from './routes/posts/list-posts/translation/$lang.edit'
+import { Route as PostsListPostsTranslationPost_idLangRouteImport } from './routes/posts/list-posts/translation/$post_id.$lang'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,17 +69,11 @@ const MosqueMosqueConfigConfigIdRoute =
     path: '/mosque/mosque-config/$configId',
     getParentRoute: () => rootRouteImport,
   } as any)
-const PostsListPostsTranslationLangRoute =
-  PostsListPostsTranslationLangRouteImport.update({
-    id: '/posts/list-posts/translation/$lang',
-    path: '/posts/list-posts/translation/$lang',
+const PostsListPostsTranslationPost_idLangRoute =
+  PostsListPostsTranslationPost_idLangRouteImport.update({
+    id: '/posts/list-posts/translation/$post_id/$lang',
+    path: '/posts/list-posts/translation/$post_id/$lang',
     getParentRoute: () => rootRouteImport,
-  } as any)
-const PostsListPostsTranslationLangEditRoute =
-  PostsListPostsTranslationLangEditRouteImport.update({
-    id: '/edit',
-    path: '/edit',
-    getParentRoute: () => PostsListPostsTranslationLangRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -93,8 +86,7 @@ export interface FileRoutesByFullPath {
   '/mosque/mosque-config/$configId': typeof MosqueMosqueConfigConfigIdRoute
   '/mosque/mosque-config/': typeof MosqueMosqueConfigIndexRoute
   '/posts/list-posts/': typeof PostsListPostsIndexRoute
-  '/posts/list-posts/translation/$lang': typeof PostsListPostsTranslationLangRouteWithChildren
-  '/posts/list-posts/translation/$lang/edit': typeof PostsListPostsTranslationLangEditRoute
+  '/posts/list-posts/translation/$post_id/$lang': typeof PostsListPostsTranslationPost_idLangRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -106,8 +98,7 @@ export interface FileRoutesByTo {
   '/mosque/mosque-config/$configId': typeof MosqueMosqueConfigConfigIdRoute
   '/mosque/mosque-config': typeof MosqueMosqueConfigIndexRoute
   '/posts/list-posts': typeof PostsListPostsIndexRoute
-  '/posts/list-posts/translation/$lang': typeof PostsListPostsTranslationLangRouteWithChildren
-  '/posts/list-posts/translation/$lang/edit': typeof PostsListPostsTranslationLangEditRoute
+  '/posts/list-posts/translation/$post_id/$lang': typeof PostsListPostsTranslationPost_idLangRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -120,8 +111,7 @@ export interface FileRoutesById {
   '/mosque/mosque-config/$configId': typeof MosqueMosqueConfigConfigIdRoute
   '/mosque/mosque-config/': typeof MosqueMosqueConfigIndexRoute
   '/posts/list-posts/': typeof PostsListPostsIndexRoute
-  '/posts/list-posts/translation/$lang': typeof PostsListPostsTranslationLangRouteWithChildren
-  '/posts/list-posts/translation/$lang/edit': typeof PostsListPostsTranslationLangEditRoute
+  '/posts/list-posts/translation/$post_id/$lang': typeof PostsListPostsTranslationPost_idLangRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -135,8 +125,7 @@ export interface FileRouteTypes {
     | '/mosque/mosque-config/$configId'
     | '/mosque/mosque-config/'
     | '/posts/list-posts/'
-    | '/posts/list-posts/translation/$lang'
-    | '/posts/list-posts/translation/$lang/edit'
+    | '/posts/list-posts/translation/$post_id/$lang'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -148,8 +137,7 @@ export interface FileRouteTypes {
     | '/mosque/mosque-config/$configId'
     | '/mosque/mosque-config'
     | '/posts/list-posts'
-    | '/posts/list-posts/translation/$lang'
-    | '/posts/list-posts/translation/$lang/edit'
+    | '/posts/list-posts/translation/$post_id/$lang'
   id:
     | '__root__'
     | '/'
@@ -161,8 +149,7 @@ export interface FileRouteTypes {
     | '/mosque/mosque-config/$configId'
     | '/mosque/mosque-config/'
     | '/posts/list-posts/'
-    | '/posts/list-posts/translation/$lang'
-    | '/posts/list-posts/translation/$lang/edit'
+    | '/posts/list-posts/translation/$post_id/$lang'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -175,7 +162,7 @@ export interface RootRouteChildren {
   MosqueMosqueConfigConfigIdRoute: typeof MosqueMosqueConfigConfigIdRoute
   MosqueMosqueConfigIndexRoute: typeof MosqueMosqueConfigIndexRoute
   PostsListPostsIndexRoute: typeof PostsListPostsIndexRoute
-  PostsListPostsTranslationLangRoute: typeof PostsListPostsTranslationLangRouteWithChildren
+  PostsListPostsTranslationPost_idLangRoute: typeof PostsListPostsTranslationPost_idLangRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -243,37 +230,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MosqueMosqueConfigConfigIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/posts/list-posts/translation/$lang': {
-      id: '/posts/list-posts/translation/$lang'
-      path: '/posts/list-posts/translation/$lang'
-      fullPath: '/posts/list-posts/translation/$lang'
-      preLoaderRoute: typeof PostsListPostsTranslationLangRouteImport
+    '/posts/list-posts/translation/$post_id/$lang': {
+      id: '/posts/list-posts/translation/$post_id/$lang'
+      path: '/posts/list-posts/translation/$post_id/$lang'
+      fullPath: '/posts/list-posts/translation/$post_id/$lang'
+      preLoaderRoute: typeof PostsListPostsTranslationPost_idLangRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/posts/list-posts/translation/$lang/edit': {
-      id: '/posts/list-posts/translation/$lang/edit'
-      path: '/edit'
-      fullPath: '/posts/list-posts/translation/$lang/edit'
-      preLoaderRoute: typeof PostsListPostsTranslationLangEditRouteImport
-      parentRoute: typeof PostsListPostsTranslationLangRoute
-    }
   }
 }
-
-interface PostsListPostsTranslationLangRouteChildren {
-  PostsListPostsTranslationLangEditRoute: typeof PostsListPostsTranslationLangEditRoute
-}
-
-const PostsListPostsTranslationLangRouteChildren: PostsListPostsTranslationLangRouteChildren =
-  {
-    PostsListPostsTranslationLangEditRoute:
-      PostsListPostsTranslationLangEditRoute,
-  }
-
-const PostsListPostsTranslationLangRouteWithChildren =
-  PostsListPostsTranslationLangRoute._addFileChildren(
-    PostsListPostsTranslationLangRouteChildren,
-  )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -285,8 +250,8 @@ const rootRouteChildren: RootRouteChildren = {
   MosqueMosqueConfigConfigIdRoute: MosqueMosqueConfigConfigIdRoute,
   MosqueMosqueConfigIndexRoute: MosqueMosqueConfigIndexRoute,
   PostsListPostsIndexRoute: PostsListPostsIndexRoute,
-  PostsListPostsTranslationLangRoute:
-    PostsListPostsTranslationLangRouteWithChildren,
+  PostsListPostsTranslationPost_idLangRoute:
+    PostsListPostsTranslationPost_idLangRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

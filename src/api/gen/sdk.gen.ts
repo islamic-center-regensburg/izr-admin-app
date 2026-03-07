@@ -84,7 +84,7 @@ export const updatePrayerConfig = <ThrowOnError extends boolean = false>(options
 /**
  * Calculation Methods
  */
-export const getCalculationMethods = <ThrowOnError extends boolean = false>(options?: Options<GetCalculationMethodsData, ThrowOnError>) => (options?.client ?? client).get<GetCalculationMethodsResponses, GetCalculationMethodsErrors, ThrowOnError>({ url: '/prayer_configs/calculation_methods', ...options });
+export const getCalculationMethods = <ThrowOnError extends boolean = false>(options: Options<GetCalculationMethodsData, ThrowOnError>) => (options.client ?? client).get<GetCalculationMethodsResponses, GetCalculationMethodsErrors, ThrowOnError>({ url: '/prayer_configs/calculation_methods', ...options });
 
 /**
  * Get Prayer Times
